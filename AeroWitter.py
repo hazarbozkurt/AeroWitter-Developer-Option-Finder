@@ -8,6 +8,9 @@ search_text = "Lvlu;->b(Ljava/lang/String;Z)Z"
 output_list = []
 counter = 1
 
+total_files = sum([len(files) for _, _, files in os.walk(folder_path)])
+processed_files = 0
+
 for root, dirs, files in os.walk(folder_path):
     for filename in files:
         if filename.endswith(".smali"):
@@ -25,6 +28,12 @@ for root, dirs, files in os.walk(folder_path):
                             output_list.append({"title": f"Value {counter}", "description": value})
                             counter += 1
                             break
+
+            processed_files += 1
+            completion_percentage = processed_files / total_files * 100
+            print(f"Processing {processed_files}/{total_files} ({completion_percentage:.2f}%)")
+
+print("Processing completed.")
 
 with open(output_file_path, "w") as output_file:
     json.dump(output_list, output_file)
