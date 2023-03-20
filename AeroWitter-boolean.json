@@ -1,10 +1,10 @@
 {
   "version_codes": [
-    "9.80.0-release.0 (29800000)",
-    "Test version code"
+    "9.75.0-release.0 (29750000)",
+    "9.80.0-release.0 (29800000)"
   ],
   "search_codes": [
-    "Lvlu;->b(Ljava/lang/String;Z)Z",
-    "Funny text yea"
+    "Lr9v;->b(Ljava/lang/String;Z)Z",
+    "Lvlu;->b(Ljava/lang/String;Z)Z"
   ]
 }
