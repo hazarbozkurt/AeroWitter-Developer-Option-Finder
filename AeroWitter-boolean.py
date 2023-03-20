@@ -3,16 +3,15 @@ import json
 import urllib.request
 from PyQt5.QtWidgets import QApplication, QFileDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget, QProgressBar, QProgressDialog, QMessageBox, QComboBox, QVBoxLayout
 from PyQt5.QtCore import Qt
+from PyQt5 import QtGui
 
 
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
 
-        title = "AeroWitter - Developer Options Finder (boolean type)"
-        self.setWindowTitle(title)
         self.setWindowIcon(QtGui.QIcon('AeroWitter.png'))
-        self.setWindowTitle("Icon")
+        self.setWindowTitle("AeroWitter - Developer Options Finder (boolean type)")
         self.window_width = 800
         self.window_height = 600
         self.resize(self.window_width, self.window_height)
