@@ -44,8 +44,6 @@ class MainWindow(QWidget):
         self.search_text_line_edit.setText(self.default_text)
         self.search_button = QPushButton("Search")
         self.search_button.setStyleSheet("font-size: 18px; padding: 10px;")
-        self.progress_bar = QProgressBar()
-        self.progress_bar.setStyleSheet("font-size: 18px; padding: 10px;")
         layout = QVBoxLayout()
         layout.addWidget(self.folder_path_label)
         layout.addWidget(self.folder_path_line_edit)
@@ -57,7 +55,6 @@ class MainWindow(QWidget):
         layout.addWidget(self.combobox)
         layout.addWidget(self.search_text_line_edit)
         layout.addWidget(self.search_button)
-        layout.addWidget(self.progress_bar)
         self.setLayout(layout)
         self.folder_path_button.clicked.connect(self.select_folder_path)
         self.output_file_path_button.clicked.connect(self.select_output_file_path)
@@ -92,6 +89,7 @@ class MainWindow(QWidget):
         progress_bar.setAutoClose(True)
         progress_bar.setAutoReset(True)
         progress_bar.setWindowTitle("Processing...")
+        progress_bar.setStyleSheet("font-size: 12px;")
     
         for root, dirs, files in os.walk(folder_path):
             for filename in files:
