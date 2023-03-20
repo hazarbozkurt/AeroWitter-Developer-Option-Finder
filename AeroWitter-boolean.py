@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QFileDialog, QLabel, QLineEdit, QPushB
 from PyQt5.QtCore import Qt
 
 
-class MainWindow(QWidget):
+class AeroWitterBooleanDevFinder(QWidget):
     def __init__(self):
         super().__init__()
 
@@ -129,6 +129,6 @@ class MainWindow(QWidget):
 
 if __name__ == "__main__":
     app = QApplication([])
-    window = MainWindow()
+    window = AeroWitterBooleanDevFinder()
     window.show()
     app.exec_()
