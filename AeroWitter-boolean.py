@@ -10,7 +10,6 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowIcon(QtGui.QIcon('AeroWitter.png'))
         self.setWindowTitle("AeroWitter - Developer Options Finder (boolean type)")
         self.window_width = 800
         self.window_height = 600
