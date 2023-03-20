@@ -9,7 +9,7 @@ class AeroWitterBooleanDevFinder(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("AeroWitter - Developer Options Finder (boolean type)")
+        self.setWindowTitle("AeroWitter - Developer Options Finder (boolean type) - V1.0")
         self.window_width = 800
         self.window_height = 600
         self.resize(self.window_width, self.window_height)
