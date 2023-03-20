@@ -33,3 +33,8 @@ A screenshot of the key code:
 
 ![image](https://user-images.githubusercontent.com/20567089/226440152-2d12a0d5-dc88-4311-9773-09dd2eefd10f.png)
 
+<br>
+<br>
+
+# How to use output Json file?
+The JSON file is being created to be compatible with Canned Replies. You can download the Canned Replies app from the Google Play Store by clicking [here](https://play.google.com/store/apps/details?id=com.tinaciousdesign.cannedreplies). You can import your JSON file using the ‘Import’ option in Canned Replies. With Canned Replies, you can copy each value with a single click.
