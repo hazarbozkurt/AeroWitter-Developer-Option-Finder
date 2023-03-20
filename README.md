@@ -9,7 +9,7 @@
 
  `D:/MyFiles/DecompiledAPKS/Twitter`
 <br><br><b>Select json save path</b> (button):
-<br>To select in which folder and which file the output values will be saved.
+<br>To select which folder and which file the output values will be saved to.
 <br><br>e.g.:
 
  `D:/MyFiles/DecompiledAPKS/output.json`
