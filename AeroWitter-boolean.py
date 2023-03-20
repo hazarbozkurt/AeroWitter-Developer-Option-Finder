@@ -1,6 +1,7 @@
 import os
 import json
-from PyQt5.QtWidgets import QApplication, QFileDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget, QProgressBar, QProgressDialog, QMessageBox
+import urllib.request
+from PyQt5.QtWidgets import QApplication, QFileDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget, QProgressBar, QProgressDialog, QMessageBox, QComboBox, QVBoxLayout
 from PyQt5.QtCore import Qt
 
 
@@ -8,6 +9,20 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
 
+        self.window_width = 800
+        self.window_height = 600
+        self.resize(self.window_width, self.window_height)
+        
+        url = 'https://raw.githubusercontent.com/hazarbozkurt/AeroWitter-Developer-Option-Finder/main/AeroWitter-boolean.json'
+        with urllib.request.urlopen(url) as f:
+            data = json.loads(f.read().decode())
+            self.version_codes = data['version_codes']
+            self.search_codes = data['search_codes']
+
+        self.combobox = QComboBox()
+        self.combobox.addItems(self.version_codes)
+        self.combobox.currentIndexChanged.connect(self.update_version_hackc)
+        self.default_text = self.search_codes[0]
         self.folder_path_label = QLabel("Folder Path:")
         self.folder_path_label.setStyleSheet("font-size: 18px; font-weight: bold;")
         self.folder_path_line_edit = QLineEdit()
@@ -25,8 +40,8 @@ class MainWindow(QWidget):
         self.search_text_label = QLabel("Search Text:")
         self.search_text_label.setStyleSheet("font-size: 18px; font-weight: bold;")
         self.search_text_line_edit = QLineEdit()
-        self.search_text_line_edit.setPlaceholderText("Enter search text...")
         self.search_text_line_edit.setStyleSheet("font-size: 18px; padding: 10px;")
+        self.search_text_line_edit.setText(self.default_text)
         self.search_button = QPushButton("Search")
         self.search_button.setStyleSheet("font-size: 18px; padding: 10px;")
         self.progress_bar = QProgressBar()
@@ -39,6 +54,7 @@ class MainWindow(QWidget):
         layout.addWidget(self.output_file_path_line_edit)
         layout.addWidget(self.output_file_path_button)
         layout.addWidget(self.search_text_label)
+        layout.addWidget(self.combobox)
         layout.addWidget(self.search_text_line_edit)
         layout.addWidget(self.search_button)
         layout.addWidget(self.progress_bar)
@@ -46,6 +62,7 @@ class MainWindow(QWidget):
         self.folder_path_button.clicked.connect(self.select_folder_path)
         self.output_file_path_button.clicked.connect(self.select_output_file_path)
         self.search_button.clicked.connect(self.search)
+        
 
     def select_folder_path(self):
         folder_path = QFileDialog.getExistingDirectory(self, "Select Folder")
@@ -54,6 +71,10 @@ class MainWindow(QWidget):
     def select_output_file_path(self):
         output_file_path, _ = QFileDialog.getSaveFileName(self, "Save File")
         self.output_file_path_line_edit.setText(output_file_path)
+
+    def update_version_hackc(self, index):
+        self.default_text = self.search_codes[index]
+        self.search_text_line_edit.setText(self.default_text)
 
     def search(self):
         folder_path = self.folder_path_line_edit.text()
