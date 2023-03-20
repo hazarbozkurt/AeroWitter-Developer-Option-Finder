@@ -3,7 +3,6 @@ import json
 import urllib.request
 from PyQt5.QtWidgets import QApplication, QFileDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget, QProgressBar, QProgressDialog, QMessageBox, QComboBox, QVBoxLayout
 from PyQt5.QtCore import Qt
-from PyQt5 import QtGui
 
 
 class MainWindow(QWidget):
