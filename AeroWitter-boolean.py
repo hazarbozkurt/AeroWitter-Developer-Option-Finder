@@ -9,6 +9,8 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
 
+        title = "AeroWitter - Developer Options Finder (boolean type)"
+        self.setWindowTitle(title)
         self.window_width = 800
         self.window_height = 600
         self.resize(self.window_width, self.window_height)
