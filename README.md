@@ -21,7 +21,7 @@
 <br>The version number and correct calling code are being synchronized from file [AeroWitter-boolean.json](https://github.com/hazarbozkurt/AeroWitter-Developer-Option-Finder/blob/main/AeroWitter-boolean.json). Whenever we manage to find some spare time, we'll make sure to update this file. 
 
 <br>If you want to type caller code yourself:
-The text box must have the correct caller to find the correct `const-string` value.
+<br>The text box must have the correct caller to find the correct `const-string` value.
 This calling code snippet changes with every version of Twitter due to Twitter’s encryption. Therefore, you need to manually find a `const-string` key of developer option type and use calling codes like `Lvlu;->b(Ljava/lang/String;Z)Z` under the key you found to find all other developer option keys.
 
 For example, in version <b>9.75.0-release.0 (29750000)</b> this code is `Lr9v;->b(Ljava/lang/String;Z)Z`, while in version <b>9.80.0-release.0 (29800000)</b> it is `Lvlu;->b(Ljava/lang/String;Z)Z`.
