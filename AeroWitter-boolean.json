@@ -1,12 +1,12 @@
 {
   "version_codes": [
-    "Version: 9.75.0-release.0 (29750000)",
+    "Version: 9.81.0-beta.2 (29810102)",
     "Version: 9.80.0-release.0 (29800000)",
-    "Version: 9.81.0-beta.2 (29810102)"
+    "Version: 9.75.0-release.0 (29750000)"
   ],
   "search_codes": [
-    "Lr9v;->b(Ljava/lang/String;Z)Z",
+    "Lbst;->b(Ljava/lang/String;Z)Z",
     "Lvlu;->b(Ljava/lang/String;Z)Z",
-    "Lbst;->b(Ljava/lang/String;Z)Z"
+    "Lr9v;->b(Ljava/lang/String;Z)Z"
   ]
 }
