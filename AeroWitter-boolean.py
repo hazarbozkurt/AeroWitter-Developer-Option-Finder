@@ -9,7 +9,7 @@ class AeroWitterBooleanDevFinder(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("AeroWitter - Developer Options Finder (boolean type) - V1.0")
+        self.setWindowTitle("AeroWitter - Developer Options Finder (boolean type) - V1.1")
         self.window_width = 800
         self.window_height = 600
         self.resize(self.window_width, self.window_height)
@@ -24,12 +24,12 @@ class AeroWitterBooleanDevFinder(QWidget):
         self.combobox.addItems(self.version_codes)
         self.combobox.currentIndexChanged.connect(self.update_version_hackc)
         self.default_text = self.search_codes[0]
-        self.folder_path_label = QLabel("Decompiled AeroWitter APK Folder Path:")
+        self.folder_path_label = QLabel("Decompiled AeroWitter/Twitter APK Folder Path:")
         self.folder_path_label.setStyleSheet("font-size: 18px; font-weight: bold;")
         self.folder_path_line_edit = QLineEdit()
         self.folder_path_line_edit.setPlaceholderText("Select folder path...")
         self.folder_path_line_edit.setStyleSheet("font-size: 18px; padding: 10px;")
-        self.folder_path_button = QPushButton("Select AeroWitter decompiled folder")
+        self.folder_path_button = QPushButton("Select decompiled folder")
         self.folder_path_button.setStyleSheet("font-size: 18px; padding: 10px;")
         self.output_file_path_label = QLabel("Output File Path:")
         self.output_file_path_label.setStyleSheet("font-size: 18px; font-weight: bold;")
@@ -38,13 +38,14 @@ class AeroWitterBooleanDevFinder(QWidget):
         self.output_file_path_line_edit.setStyleSheet("font-size: 18px; padding: 10px;")
         self.output_file_path_button = QPushButton("Select json save path")
         self.output_file_path_button.setStyleSheet("font-size: 18px; padding: 10px;")
-        self.search_text_label = QLabel("Search Text:")
+        self.search_text_label = QLabel("Search Caller Code:")
         self.search_text_label.setStyleSheet("font-size: 18px; font-weight: bold;")
         self.search_text_line_edit = QLineEdit()
         self.search_text_line_edit.setStyleSheet("font-size: 18px; padding: 10px;")
         self.search_text_line_edit.setText(self.default_text)
-        self.search_button = QPushButton("Find all const-string boolean values and save!")
+        self.search_button = QPushButton("Find All Developer Settings Values And Save!")
         self.search_button.setStyleSheet("font-size: 18px; padding: 10px;")
+        self.set_combobox_width()
         layout = QVBoxLayout()
         layout.addWidget(self.folder_path_label)
         layout.addWidget(self.folder_path_line_edit)
@@ -60,15 +61,30 @@ class AeroWitterBooleanDevFinder(QWidget):
         self.folder_path_button.clicked.connect(self.select_folder_path)
         self.output_file_path_button.clicked.connect(self.select_output_file_path)
         self.search_button.clicked.connect(self.search)
-        
+
+
+    def set_combobox_width(self):
+        max_width = 0
+        for i in range(self.combobox.count()):
+            item_width = self.combobox.fontMetrics().boundingRect(self.combobox.itemText(i)).width()
+            max_width = max(max_width, item_width)
+        self.combobox.setFixedWidth(max_width + 30)
+
 
     def select_folder_path(self):
         folder_path = QFileDialog.getExistingDirectory(self, "Select Folder")
         self.folder_path_line_edit.setText(folder_path)
-
+        
     def select_output_file_path(self):
-        output_file_path, _ = QFileDialog.getSaveFileName(self, "Save File")
+        default_file_name = "TwitterDeveloperOptions.json"
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseCustomDirectoryIcons
+        options |= QFileDialog.ShowDirsOnly
+        options |= QFileDialog.HideNameFilterDetails
+        file_filter = f"JSON files (*{default_file_name})"
+        output_file_path, _ = QFileDialog.getSaveFileName(self, "Save Twitter Developer Options", default_file_name, file_filter, options=options)
         self.output_file_path_line_edit.setText(output_file_path)
+
 
     def update_version_hackc(self, index):
         self.default_text = self.search_codes[index]
@@ -125,10 +141,45 @@ class AeroWitterBooleanDevFinder(QWidget):
         QMessageBox.information(self, "Processing completed", "Processing completed.")
     
         with open(output_file_path, "w") as output_file:
-            json.dump(output_list, output_file)
+            new_output_list = []
+            duplicates = set()
+            for item in output_list:
+                if "description" in item:
+                    while any(d["description"] == item["description"] for d in new_output_list):
+                        if item["description"] not in duplicates:
+                            if "YesToAll" not in locals() or not YesToAll:
+                                choice = QMessageBox.question(self, "Duplicate developer options found", f'Duplicate value "{item["description"]}" found. Do you want to remove it?\n\n'
+                                                                                               'Click "Yes" to remove this duplicate developer option value only.\n'
+                                                                                               'Click "Yes to all" to remove all duplicate developer option values and avoid future prompts.\n'
+                                                                                               'Click "Cancel" to cancel processing and keep all duplicate developer option values.', 
+                                                               QMessageBox.Yes | QMessageBox.Cancel | QMessageBox.YesToAll, QMessageBox.Cancel)
+                                if choice == QMessageBox.Yes:
+                                    new_output_list = [d for d in new_output_list if d.get("description") != item["description"]]
+                                elif choice == QMessageBox.Cancel:
+                                    progress_bar.reset()
+                                    QMessageBox.information(self, "Processing cancelled", f'Processing cancelled \n\n' 'No duplicate developer option value was deleted.')
+                                    json.dump(output_list, output_file)
+                                    return
+                                elif choice == QMessageBox.YesToAll:
+                                    duplicates.add(item["description"])
+                                    YesToAll = True
+                                    new_output_list = [d for d in new_output_list if d.get("description") != item["description"]]
+                                    break
+                            else:
+                                duplicates.add(item["description"])
+                                new_output_list = [d for d in new_output_list if d.get("description") != item["description"]]
+                                break
+                        else:
+                            new_output_list = [d for d in new_output_list if d.get("description") != item["description"]]
+                            break
+                new_output_list.append(item)
+            json.dump(new_output_list, output_file)
+            QMessageBox.information(self, "Processing completed", "Processing completed.")
 
+            
 if __name__ == "__main__":
     app = QApplication([])
     window = AeroWitterBooleanDevFinder()
     window.show()
     app.exec_()
+    
