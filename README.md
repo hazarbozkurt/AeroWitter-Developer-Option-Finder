@@ -3,7 +3,7 @@
 <br>
 <br>
 <h1>How to use:</h1>
-<b>Select AeroWitter decompiled folder</b> (button):
+<b>Select decompiled folder</b> (button):
 <br>To select the folder path of the decompiled Twitter APK file.
 <br><br>e.g.:
 
