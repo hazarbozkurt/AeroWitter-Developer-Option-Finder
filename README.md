@@ -1,5 +1,5 @@
 # AeroWitter-Developer-Option-Finder
-![image](https://user-images.githubusercontent.com/20567089/226429348-fbf93b47-ab19-4c3d-a42a-f218ae4f3a60.png)
+![image](https://user-images.githubusercontent.com/20567089/226596095-bcd512e3-bd79-4e0f-bf16-10e5fe54d861.png)
 <br>
 <br>
 <h1>How to use:</h1>
