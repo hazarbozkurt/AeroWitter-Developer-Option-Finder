@@ -1,5 +1,6 @@
 {
   "version_codes": [
+    "Version: 9.82.0-beta.3 (29820103)",
     "Version: 9.81.0-release.0 (29810000)",
     "Version: 9.82.0-alpha.2 (29820202)",
     "Version: 9.81.0-beta.2 (29810102)",
@@ -7,6 +8,7 @@
     "Version: 9.75.0-release.0 (29750000)"
   ],
   "search_codes": [
+    "Le3u;->b(Ljava/lang/String;Z)Z",
     "Lbst;->b(Ljava/lang/String;Z)Z",
     "Lwst;->b(Ljava/lang/String;Z)Z",
     "Lbst;->b(Ljava/lang/String;Z)Z",
