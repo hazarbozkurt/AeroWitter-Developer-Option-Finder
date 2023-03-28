@@ -35,6 +35,8 @@ A screenshot of the key code:
 
 ![image](https://user-images.githubusercontent.com/20567089/226440152-2d12a0d5-dc88-4311-9773-09dd2eefd10f.png)
 
+You can use [apktool](https://ibotpeaches.github.io/Apktool/) to decompile Twitter's APK file.
+
 <br>
 <br>
 
