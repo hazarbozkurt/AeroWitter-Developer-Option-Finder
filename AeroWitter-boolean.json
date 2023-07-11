@@ -1,5 +1,6 @@
 {
   "version_codes": [
+    "Version: 9.95.0-release.0 (29950000) (AeroWitter V3.5)",
     "Version: 9.84.1-release.0 (29841000)",
     "Version: 9.82.0-release.0 (29820000)",
     "Version: 9.82.0-beta.3 (29820103)",
@@ -10,6 +11,7 @@
     "Version: 9.75.0-release.0 (29750000)"
   ],
   "search_codes": [
+    "Lb0u;->b(Ljava/lang/String;Z)Z",
     "Lqyt;->b(Ljava/lang/String;Z)Z",
     "Le3u;->b(Ljava/lang/String;Z)Z",
     "Le3u;->b(Ljava/lang/String;Z)Z",
